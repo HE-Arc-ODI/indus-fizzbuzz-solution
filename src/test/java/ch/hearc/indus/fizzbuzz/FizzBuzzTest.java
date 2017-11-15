@@ -8,23 +8,41 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class FizzBuzzTest {
 
+  public static final int CAPACITY = 100;
   private FizzBuzz fb;
+  private ArrayList cheatSheet;
 
   @Before
   public void initFizzBuzz() {
     fb = new FizzBuzz();
+    cheatSheet = fb.fizzBuzzCheatSheet(CAPACITY);
   }
 
   @Test
   public void testListSize() {
-    int capacity = 100;
-    assertEquals(capacity, fb.fizzBuzzCheatSheet(capacity).size());
+    assertEquals(CAPACITY, cheatSheet.size());
+    System.out.println(cheatSheet);
+  }
+
+  @Test
+  public void testSequence() {
+    for(int i=0; i<CAPACITY;i++){
+      assertEquals(String.valueOf(i+1),cheatSheet.get(i));
+    }
+  }
+
+  @Test
+  public void replaceMultiplesOf3ByFizz(){
+    System.out.println(fb.replaceMultiplesOf3ByFizz(cheatSheet));
+  }
+
+  @Test
+  public void replaceMultiplesOf3and5ByFizzBuzz(){
+    System.out.println(fb.replaceMultiplesOf3and5ByFizzBuzz(cheatSheet));
   }
 
 }
