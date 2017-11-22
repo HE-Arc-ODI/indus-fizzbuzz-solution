@@ -68,4 +68,14 @@ public class FizzBuzzTest {
     }
   }
 
+  @Test
+  public void testNonMultiplesOf3and5() {
+    for (int i = 0; i < cheatSheet.size(); i++) {
+      int n = i + 1;
+      if (!(n % 3 == 0 || n % 5 == 0)) {
+        assertEquals(n, Integer.parseInt(cheatSheet.get(i)));
+      }
+    }
+  }
+
 }
