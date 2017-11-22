@@ -20,11 +20,16 @@ public class FizzBuzz {
    * @return the cheatsheet.
    */
   public ArrayList<String> fizzBuzzCheatSheet(int length) {
+    ArrayList<String> cheatSheet = createSequence(length);
+    return replaceMultiplesOf3and5ByFizzBuzz(cheatSheet);
+  }
+
+  private ArrayList<String> createSequence(int length) {
     ArrayList<String> cheatSheet = new ArrayList<String>(length);
     for (int i = 0; i < length; i++) {
       cheatSheet.add(i, String.valueOf(i + 1));
     }
-    return replaceMultiplesOf3and5ByFizzBuzz(cheatSheet);
+    return cheatSheet;
   }
 
 
