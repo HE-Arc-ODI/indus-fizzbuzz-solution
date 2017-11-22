@@ -7,6 +7,8 @@ package ch.hearc.indus.fizzbuzz;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,6 +30,22 @@ public class FizzBuzzTest {
   @Test
   public void testListSize() {
     assertEquals(CAPACITY, cheatSheet.size());
+  }
+
+  // utilisation de la réflexion pour tester la méthode privée
+  @Test
+  public void testNumberSequence()
+      throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    // int parameter
+    Class[] argClasses = new Class<?>[1];
+    argClasses[0] = int.class;
+    Method m = null;
+    m = fb.getClass().getDeclaredMethod("createSequence", argClasses);
+    m.setAccessible(true);
+    ArrayList<String> numberSequence = (ArrayList<String>) m.invoke(fb, CAPACITY);
+    for (int i = 0; i < CAPACITY; i++) {
+      assertEquals(i + 1, Integer.parseInt(numberSequence.get(i)));
+    }
   }
 
   @Test
@@ -77,5 +95,6 @@ public class FizzBuzzTest {
       }
     }
   }
+
 
 }
