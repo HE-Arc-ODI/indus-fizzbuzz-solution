@@ -37,17 +37,16 @@ public class FizzBuzz {
     return list.stream().map(s -> {
       int n = Integer.parseInt(s);
       String str = "";
+      if (n % 3 > 0 && n % 5 > 0) {
+        str += s;
+      }
       if ((n % 3) == 0) {
         str += "Fizz";
       }
       if ((n % 5) == 0) {
         str += "Buzz";
       }
-      if (str.isEmpty()) {
-        return s;
-      } else {
         return str;
-      }
     }).collect(
         Collectors.toCollection(ArrayList::new));
   }
